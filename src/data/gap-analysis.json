@@ -1,0 +1,15 @@
+{
+  "lastUpdated": "2025-01-01T00:00:00Z",
+  "items": [
+    {"capability":"Campaign Execution","domain":"Marketing","currentState":"semi-automated","targetState":"automated","priority":"high","effort":"medium","businessValue":"high","timeline":"Q2 2024","tcsRecommendation":true},
+    {"capability":"Lead Opportunity Mgmt","domain":"Sales","currentState":"semi-automated","targetState":"automated","priority":"high","effort":"high","businessValue":"high","timeline":"Q3 2024","tcsRecommendation":true},
+    {"capability":"Customer Case Mgmt","domain":"Servicing","currentState":"manual","targetState":"automated","priority":"medium","effort":"high","businessValue":"medium","timeline":"Q4 2024","tcsRecommendation":true},
+    {"capability":"Brand Mgmt","domain":"Marketing","currentState":"manual","targetState":"semi-automated","priority":"medium","effort":"medium","businessValue":"medium","timeline":"Q1 2025","tcsRecommendation":false},
+    {"capability":"Fraud Mgmt","domain":"Accounts","currentState":"semi-automated","targetState":"automated","priority":"high","effort":"low","businessValue":"high","timeline":"Q1 2024","tcsRecommendation":true}
+  ]
+}
+
+
+
+
+

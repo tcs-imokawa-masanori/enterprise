@@ -1,0 +1,522 @@
+import React, { useState } from 'react';
+import {
+  BookOpen,
+  FileText,
+  GraduationCap,
+  Globe,
+  ChevronRight,
+  ChevronLeft,
+  Home,
+  Layers,
+  TrendingUp,
+  Target,
+  GitBranch,
+  Database,
+  Award,
+  Map,
+  ExternalLink,
+  Download
+} from 'lucide-react';
+import { useTheme } from '../contexts/ThemeContext';
+
+// Import all EA Education sections
+import OverviewSection from './ea-education/OverviewSection';
+import BenefitsSection from './ea-education/BenefitsSection';
+import ApproachSection from './ea-education/ApproachSection';
+import FrameworkSection from './ea-education/FrameworkSection';
+import SOAArchitectureSection from './ea-education/SOAArchitectureSection';
+import CaseStudySection from './ea-education/CaseStudySection';
+import MethodologyFrameworkSection from './ea-education/MethodologyFrameworkSection';
+import RoadmapSection from './ea-education/RoadmapSection';
+
+interface DocumentSection {
+  id: string;
+  category: string;
+  title: { en: string; ja: string };
+  icon: React.ElementType;
+  description: { en: string; ja: string };
+  component?: React.FC<{ language: 'en' | 'ja' }>;
+  content?: { en: React.ReactNode; ja: React.ReactNode };
+  external?: string;
+}
+
+const DocumentationHub: React.FC = () => {
+  const { isDarkMode } = useTheme();
+  const [language, setLanguage] = useState<'en' | 'ja'>('en');
+  const [selectedSection, setSelectedSection] = useState<string>('overview');
+  const [activeCategory, setActiveCategory] = useState<string>('ea-fundamentals');
+
+  const documentSections: DocumentSection[] = [
+    // EA Fundamentals
+    {
+      id: 'overview',
+      category: 'ea-fundamentals',
+      title: {
+        en: 'Enterprise Architecture Overview',
+        ja: 'EA Overview'
+      },
+      icon: Layers,
+      description: {
+        en: 'Introduction to EA concepts, layers, and core principles',
+        ja: 'Introduction to EA concepts'
+      },
+      component: OverviewSection
+    },
+    {
+      id: 'benefits',
+      category: 'ea-fundamentals',
+      title: {
+        en: 'Key Benefits of EA',
+        ja: 'Key Benefits'
+      },
+      icon: TrendingUp,
+      description: {
+        en: 'Understanding the value proposition and impact metrics',
+        ja: 'Value proposition and metrics'
+      },
+      component: BenefitsSection
+    },
+    {
+      id: 'approach',
+      category: 'ea-fundamentals',
+      title: {
+        en: 'EA Implementation Approach',
+        ja: 'Implementation Approach'
+      },
+      icon: Target,
+      description: {
+        en: 'Strategic approaches to implementing Enterprise Architecture',
+        ja: 'Strategic implementation approaches'
+      },
+      component: ApproachSection
+    },
+
+    // Frameworks & Methodologies
+    {
+      id: 'framework',
+      category: 'frameworks',
+      title: {
+        en: 'EA Frameworks (TOGAF, Zachman)',
+        ja: 'EA Frameworks'
+      },
+      icon: GitBranch,
+      description: {
+        en: 'Industry standard frameworks including TOGAF ADM cycle',
+        ja: 'Industry standard frameworks'
+      },
+      component: FrameworkSection
+    },
+    {
+      id: 'soa',
+      category: 'frameworks',
+      title: {
+        en: 'Service-Oriented Architecture',
+        ja: 'SOA Architecture'
+      },
+      icon: Database,
+      description: {
+        en: 'SOA principles, layers, and reference architecture',
+        ja: 'SOA principles and architecture'
+      },
+      component: SOAArchitectureSection
+    },
+    {
+      id: 'methodology',
+      category: 'frameworks',
+      title: {
+        en: 'Development Methodology',
+        ja: 'Development Methodology'
+      },
+      icon: Layers,
+      description: {
+        en: 'EA development methodology and best practices',
+        ja: 'Development methodology'
+      },
+      component: MethodologyFrameworkSection
+    },
+
+    // Implementation & Case Studies
+    {
+      id: 'roadmap',
+      category: 'implementation',
+      title: {
+        en: 'TOGAF Implementation Roadmap',
+        ja: 'Implementation Roadmap'
+      },
+      icon: Map,
+      description: {
+        en: 'Step-by-step TOGAF-based implementation guide',
+        ja: 'TOGAF implementation guide'
+      },
+      component: RoadmapSection
+    },
+    {
+      id: 'case-study',
+      category: 'implementation',
+      title: {
+        en: 'Case Study: Automotive Industry',
+        ja: 'Automotive Case Study'
+      },
+      icon: Award,
+      description: {
+        en: 'Real-world EA transformation in Japanese automotive',
+        ja: 'Real-world transformation case'
+      },
+      component: CaseStudySection
+    },
+
+    // Additional Resources
+    {
+      id: 'glossary',
+      category: 'resources',
+      title: {
+        en: 'EA Glossary & Terms',
+        ja: 'EA Glossary'
+      },
+      icon: FileText,
+      description: {
+        en: 'Common EA terminology and definitions',
+        ja: 'EA terminology'
+      },
+      content: {
+        en: (
+          <div className="space-y-6">
+            <h3 className="text-xl font-semibold">Enterprise Architecture Glossary</h3>
+            <div className="space-y-4">
+              <div className="border-l-4 border-pink-600 pl-4">
+                <h4 className="font-semibold">ADM (Architecture Development Method)</h4>
+                <p className="text-sm text-gray-600 dark:text-gray-400">The core of TOGAF, a step-by-step approach to develop and manage enterprise architecture</p>
+              </div>
+              <div className="border-l-4 border-pink-600 pl-4">
+                <h4 className="font-semibold">Business Capability</h4>
+                <p className="text-sm text-gray-600 dark:text-gray-400">A particular ability that a business may possess to achieve a specific outcome</p>
+              </div>
+              <div className="border-l-4 border-pink-600 pl-4">
+                <h4 className="font-semibold">Enterprise Continuum</h4>
+                <p className="text-sm text-gray-600 dark:text-gray-400">A view of the Architecture Repository that provides methods for classifying architecture artifacts</p>
+              </div>
+              <div className="border-l-4 border-pink-600 pl-4">
+                <h4 className="font-semibold">Gap Analysis</h4>
+                <p className="text-sm text-gray-600 dark:text-gray-400">The comparison between the Baseline and Target Architectures to identify differences</p>
+              </div>
+              <div className="border-l-4 border-pink-600 pl-4">
+                <h4 className="font-semibold">Reference Architecture</h4>
+                <p className="text-sm text-gray-600 dark:text-gray-400">A template solution for an architecture for a particular domain</p>
+              </div>
+              <div className="border-l-4 border-pink-600 pl-4">
+                <h4 className="font-semibold">Architecture Repository</h4>
+                <p className="text-sm text-gray-600 dark:text-gray-400">A holding area for all architecture-related projects within the enterprise</p>
+              </div>
+            </div>
+          </div>
+        ),
+        ja: (
+          <div className="space-y-6">
+            <h3 className="text-xl font-semibold">EA Glossary</h3>
+            <p>Enterprise Architecture terminology and definitions</p>
+          </div>
+        )
+      }
+    },
+    {
+      id: 'best-practices',
+      category: 'resources',
+      title: {
+        en: 'Best Practices Guide',
+        ja: 'Best Practices'
+      },
+      icon: GraduationCap,
+      description: {
+        en: 'EA implementation best practices and guidelines',
+        ja: 'Implementation best practices'
+      },
+      content: {
+        en: (
+          <div className="space-y-6">
+            <h3 className="text-xl font-semibold">EA Best Practices</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                <h4 className="font-semibold mb-2">Start with Business</h4>
+                <ul className="text-sm space-y-1">
+                  <li>• Align with business strategy</li>
+                  <li>• Focus on business outcomes</li>
+                  <li>• Engage business stakeholders</li>
+                </ul>
+              </div>
+              <div className="p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                <h4 className="font-semibold mb-2">Iterative Approach</h4>
+                <ul className="text-sm space-y-1">
+                  <li>• Start small and scale</li>
+                  <li>• Quick wins first</li>
+                  <li>• Continuous improvement</li>
+                </ul>
+              </div>
+              <div className="p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
+                <h4 className="font-semibold mb-2">Governance</h4>
+                <ul className="text-sm space-y-1">
+                  <li>• Clear decision rights</li>
+                  <li>• Architecture review board</li>
+                  <li>• Compliance monitoring</li>
+                </ul>
+              </div>
+              <div className="p-4 bg-orange-50 dark:bg-orange-900/20 rounded-lg">
+                <h4 className="font-semibold mb-2">Communication</h4>
+                <ul className="text-sm space-y-1">
+                  <li>• Stakeholder engagement</li>
+                  <li>• Clear documentation</li>
+                  <li>• Regular updates</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        ),
+        ja: (
+          <div className="space-y-6">
+            <h3 className="text-xl font-semibold">Best Practices</h3>
+            <p>EA implementation guidelines</p>
+          </div>
+        )
+      }
+    },
+    {
+      id: 'templates',
+      category: 'resources',
+      title: {
+        en: 'Templates & Downloads',
+        ja: 'Templates'
+      },
+      icon: Download,
+      description: {
+        en: 'Downloadable EA templates and resources',
+        ja: 'EA templates and resources'
+      },
+      content: {
+        en: (
+          <div className="space-y-6">
+            <h3 className="text-xl font-semibold">EA Templates & Resources</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="p-4 border rounded-lg hover:shadow-lg transition-shadow cursor-pointer">
+                <Download className="h-8 w-8 text-blue-600 mb-2" />
+                <h4 className="font-semibold">Architecture Vision Template</h4>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Template for creating architecture vision documents</p>
+              </div>
+              <div className="p-4 border rounded-lg hover:shadow-lg transition-shadow cursor-pointer">
+                <Download className="h-8 w-8 text-green-600 mb-2" />
+                <h4 className="font-semibold">Capability Assessment Matrix</h4>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Excel template for capability maturity assessment</p>
+              </div>
+              <div className="p-4 border rounded-lg hover:shadow-lg transition-shadow cursor-pointer">
+                <Download className="h-8 w-8 text-purple-600 mb-2" />
+                <h4 className="font-semibold">TOGAF ADM Checklist</h4>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Complete checklist for TOGAF ADM phases</p>
+              </div>
+              <div className="p-4 border rounded-lg hover:shadow-lg transition-shadow cursor-pointer">
+                <Download className="h-8 w-8 text-orange-600 mb-2" />
+                <h4 className="font-semibold">Gap Analysis Template</h4>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Template for conducting architecture gap analysis</p>
+              </div>
+            </div>
+          </div>
+        ),
+        ja: (
+          <div className="space-y-6">
+            <h3 className="text-xl font-semibold">Templates & Downloads</h3>
+            <p>EA templates and resources</p>
+          </div>
+        )
+      }
+    }
+  ];
+
+  const categories = [
+    { id: 'ea-fundamentals', name: { en: 'EA Fundamentals', ja: 'EA Fundamentals' }, icon: BookOpen },
+    { id: 'frameworks', name: { en: 'Frameworks & Methods', ja: 'Frameworks' }, icon: GitBranch },
+    { id: 'implementation', name: { en: 'Implementation', ja: 'Implementation' }, icon: Target },
+    { id: 'resources', name: { en: 'Resources', ja: 'Resources' }, icon: FileText }
+  ];
+
+  const currentSection = documentSections.find(s => s.id === selectedSection) || documentSections[0];
+  const categorySections = documentSections.filter(s => s.category === activeCategory);
+
+  return (
+    <div className={`h-full flex flex-col ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'}`}>
+      {/* Header */}
+      <header className={`${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} shadow-sm border-b`}>
+        <div className="px-6 py-4">
+          <div className="flex justify-between items-center">
+            <div className="flex items-center space-x-4">
+              <BookOpen className={`h-8 w-8 ${isDarkMode ? 'text-pink-400' : 'text-pink-600'}`} />
+              <div>
+                <h1 className={`text-xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                  {language === 'en' ? 'EA Documentation Hub' : 'EA Documentation Hub'}
+                </h1>
+                <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                  {language === 'en' ? 'Complete Enterprise Architecture Learning Resources' : 'Enterprise Architecture Resources'}
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={() => setLanguage(language === 'en' ? 'ja' : 'en')}
+              className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              <Globe className="h-4 w-4" />
+              <span>{language === 'en' ? '日本語' : 'English'}</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Category Tabs */}
+        <div className={`px-6 pb-0 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
+          <div className="flex space-x-4 border-b">
+            {categories.map(category => {
+              const Icon = category.icon;
+              return (
+                <button
+                  key={category.id}
+                  onClick={() => {
+                    setActiveCategory(category.id);
+                    const firstInCategory = documentSections.find(s => s.category === category.id);
+                    if (firstInCategory) setSelectedSection(firstInCategory.id);
+                  }}
+                  className={`flex items-center space-x-2 px-4 py-3 border-b-2 transition-colors ${
+                    activeCategory === category.id
+                      ? 'border-pink-600 text-pink-600'
+                      : isDarkMode
+                        ? 'border-transparent text-gray-400 hover:text-gray-300'
+                        : 'border-transparent text-gray-600 hover:text-gray-900'
+                  }`}
+                >
+                  <Icon className="h-4 w-4" />
+                  <span className="font-medium">{category.name[language]}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <div className="flex flex-1 overflow-hidden">
+        {/* Sidebar */}
+        <aside className={`w-80 ${isDarkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg overflow-y-auto`}>
+          <div className="p-4">
+            <h3 className={`text-sm font-semibold mb-3 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+              {categories.find(c => c.id === activeCategory)?.name[language]}
+            </h3>
+            <nav className="space-y-2">
+              {categorySections.map(section => {
+                const Icon = section.icon;
+                return (
+                  <button
+                    key={section.id}
+                    onClick={() => setSelectedSection(section.id)}
+                    className={`w-full text-left p-3 rounded-lg transition-all ${
+                      selectedSection === section.id
+                        ? 'bg-pink-600 text-white shadow-md'
+                        : isDarkMode
+                          ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                          : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
+                    }`}
+                  >
+                    <div className="flex items-center space-x-3">
+                      <Icon className="h-5 w-5 flex-shrink-0" />
+                      <div className="flex-1">
+                        <div className="font-medium text-sm">{section.title[language]}</div>
+                        <div className={`text-xs mt-1 ${
+                          selectedSection === section.id ? 'text-pink-100' : 'opacity-75'
+                        }`}>
+                          {section.description[language]}
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                );
+              })}
+            </nav>
+          </div>
+        </aside>
+
+        {/* Content Area */}
+        <main className="flex-1 overflow-y-auto">
+          <div className="p-8">
+            <div className="max-w-5xl mx-auto">
+              {/* Section Header */}
+              <div className="mb-8">
+                <div className="flex items-center space-x-4 mb-4">
+                  <div className="w-12 h-12 bg-pink-600 rounded-xl flex items-center justify-center shadow-lg">
+                    {React.createElement(currentSection.icon, { className: "h-6 w-6 text-white" })}
+                  </div>
+                  <div className="flex-1">
+                    <h1 className={`text-3xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                      {currentSection.title[language]}
+                    </h1>
+                    <p className={`text-sm mt-1 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                      {currentSection.description[language]}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Section Content */}
+              <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} rounded-xl shadow-lg p-8`}>
+                {currentSection.component ? (
+                  <currentSection.component language={language} />
+                ) : currentSection.content ? (
+                  currentSection.content[language]
+                ) : (
+                  <div className="text-center py-12">
+                    <FileText className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+                    <p className={`${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                      Content coming soon...
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              {/* Navigation Footer */}
+              <div className="mt-8 flex justify-between items-center">
+                {categorySections.findIndex(s => s.id === selectedSection) > 0 && (
+                  <button
+                    onClick={() => {
+                      const currentIndex = categorySections.findIndex(s => s.id === selectedSection);
+                      if (currentIndex > 0) {
+                        setSelectedSection(categorySections[currentIndex - 1].id);
+                      }
+                    }}
+                    className={`flex items-center space-x-2 px-4 py-2 rounded-lg ${
+                      isDarkMode
+                        ? 'bg-gray-700 text-gray-200 hover:bg-gray-600'
+                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    }`}
+                  >
+                    <ChevronLeft className="h-4 w-4" />
+                    <span>{language === 'en' ? 'Previous' : 'Previous'}</span>
+                  </button>
+                )}
+
+                <div className="flex-1" />
+
+                {categorySections.findIndex(s => s.id === selectedSection) < categorySections.length - 1 && (
+                  <button
+                    onClick={() => {
+                      const currentIndex = categorySections.findIndex(s => s.id === selectedSection);
+                      if (currentIndex < categorySections.length - 1) {
+                        setSelectedSection(categorySections[currentIndex + 1].id);
+                      }
+                    }}
+                    className="flex items-center space-x-2 px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700"
+                  >
+                    <span>{language === 'en' ? 'Next' : 'Next'}</span>
+                    <ChevronRight className="h-4 w-4" />
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  );
+};
+
+export default DocumentationHub;

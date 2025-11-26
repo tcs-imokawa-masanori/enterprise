@@ -1,0 +1,32 @@
+{
+  "lastUpdated": "2025-01-01T00:00:00Z",
+  "automationMetrics": {
+    "current": { "manual": 35, "semiAutomated": 45, "automated": 20 },
+    "target": { "manual": 10, "semiAutomated": 25, "automated": 65 }
+  },
+  "domainMetrics": [
+    { "name": "Sales & Service", "capabilities": 28, "automated": 6, "priority": "high" },
+    { "name": "Operations & Execution", "capabilities": 32, "automated": 12, "priority": "medium" },
+    { "name": "Risk & Compliance", "capabilities": 8, "automated": 2, "priority": "high" },
+    { "name": "Reference Data", "capabilities": 6, "automated": 1, "priority": "low" },
+    { "name": "Business Support", "capabilities": 9, "automated": 0, "priority": "low" }
+  ],
+  "transformationTimeline": [
+    { "quarter": "Q1 2024", "capabilities": 3, "effort": "Medium", "value": "High" },
+    { "quarter": "Q2 2024", "capabilities": 5, "effort": "High", "value": "High" },
+    { "quarter": "Q3 2024", "capabilities": 4, "effort": "Medium", "value": "Medium" },
+    { "quarter": "Q4 2024", "capabilities": 6, "effort": "High", "value": "Medium" },
+    { "quarter": "Q1 2025", "capabilities": 3, "effort": "Low", "value": "Low" }
+  ],
+  "riskFactors": [
+    { "risk": "Legacy System Integration", "impact": "High", "likelihood": "Medium", "mitigation": "API Gateway Implementation" },
+    { "risk": "Change Management", "impact": "Medium", "likelihood": "High", "mitigation": "Comprehensive Training Program" },
+    { "risk": "Data Migration", "impact": "High", "likelihood": "Low", "mitigation": "Phased Migration Approach" },
+    { "risk": "Skill Gap", "impact": "Medium", "likelihood": "Medium", "mitigation": "Upskilling & External Hiring" }
+  ]
+}
+
+
+
+
+

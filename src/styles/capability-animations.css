@@ -1,0 +1,158 @@
+/* Capability Box Animations */
+.capability-box {
+  position: relative;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.capability-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.capability-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.capability-box:hover::before {
+  opacity: 1;
+}
+
+/* Pulse Animation for New Features */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+  }
+}
+
+.capability-new {
+  animation: pulse 2s infinite;
+}
+
+/* Modal Animations */
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalSlideIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-backdrop {
+  animation: modalFadeIn 0.3s ease;
+}
+
+.modal-content {
+  animation: modalSlideIn 0.3s ease;
+}
+
+/* Info Icon Animation */
+.info-icon {
+  transition: all 0.2s ease;
+}
+
+.capability-box:hover .info-icon {
+  transform: scale(1.2);
+}
+
+/* Level-specific hover effects */
+.level-manual:hover {
+  background-image: linear-gradient(45deg, rgba(239, 68, 68, 0.9), rgba(220, 38, 38, 0.9));
+}
+
+.level-semi-automated:hover {
+  background-image: linear-gradient(45deg, rgba(251, 146, 60, 0.9), rgba(249, 115, 22, 0.9));
+}
+
+.level-automated:hover {
+  background-image: linear-gradient(45deg, rgba(34, 197, 94, 0.9), rgba(16, 185, 129, 0.9));
+}
+
+/* Tooltip styles */
+.capability-tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  border-radius: 6px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 1000;
+}
+
+.capability-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: rgba(0, 0, 0, 0.9);
+}
+
+.capability-box:hover .capability-tooltip {
+  opacity: 1;
+}
+
+/* Progress Indicator Animation */
+@keyframes progress {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: var(--progress-width, 50%);
+  }
+}
+
+.progress-bar {
+  position: relative;
+  height: 4px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  animation: progress 1s ease forwards;
+  border-radius: 2px;
+}

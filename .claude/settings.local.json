@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run dev:*)",
+      "Read(//c/Users/Leo/Documents/EA/**)",
+      "Bash(npm install:*)",
+      "Bash(npm run server:*)",
+      "Bash(curl:*)",
+      "Bash(dir:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(taskkill:*)",
+      "Bash(npm start)",
+      "Bash(nslookup:*)",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "Bash(cmd /c:*)",
+      "Bash(node:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

@@ -1,0 +1,39 @@
+# Copy and paste these commands after SSHing into your EC2:
+
+# 1. First, backup the current config
+sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.backup
+
+# 2. Add the API proxy configuration
+sudo bash -c 'cat >> /etc/nginx/sites-available/default << EOF
+
+    # Proxy API requests to backend server
+    location /api/ {
+        proxy_pass http://localhost:3001/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade \$http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host \$host;
+        proxy_set_header X-Real-IP \$remote_addr;
+        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto \$scheme;
+        proxy_cache_bypass \$http_upgrade;
+
+        # CORS headers
+        add_header Access-Control-Allow-Origin * always;
+        add_header Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS" always;
+        add_header Access-Control-Allow-Headers "Content-Type, Authorization" always;
+    }
+EOF'
+
+# 3. Fix the configuration (remove extra closing brace if needed)
+sudo sed -i '$ d' /etc/nginx/sites-available/default
+echo "}" | sudo tee -a /etc/nginx/sites-available/default
+
+# 4. Test the configuration
+sudo nginx -t
+
+# 5. If test passes, reload nginx
+sudo systemctl reload nginx
+
+# 6. Test the API endpoint
+curl -X POST http://localhost/api/realtime/client_secret -H "Content-Type: application/json" -d "{}"

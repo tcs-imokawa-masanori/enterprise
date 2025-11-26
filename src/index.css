@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Dark mode readability: lighten font weights for dense UIs */
+/* Applies globally without changing each component */
+.dark .font-bold { font-weight: 600; }
+.dark .font-semibold { font-weight: 500; }
+.dark .font-medium { font-weight: 400; }
+
+/* Dark mode text colors - ensure all text is visible */
+.dark .text-white { color: #f3f4f6; }
+.dark .text-gray-900 { color: #e5e7eb; }
+.dark .text-gray-800 { color: #e7e9ee; }
+.dark .text-gray-700 { color: #d1d5db; }
+.dark .text-gray-600 { color: #9ca3af; }
+.dark .text-gray-500 { color: #6b7280; }
+.dark .text-gray-400 { color: #9ca3af; }
+.dark .text-gray-300 { color: #d1d5db; }
+.dark .text-gray-200 { color: #e5e7eb; }
+.dark .text-gray-100 { color: #f3f4f6; }
+
+/* Dark mode for black text - make it white/light */
+.dark .text-black { color: #ffffff; }
+.dark .text-slate-900 { color: #e2e8f0; }
+.dark .text-slate-800 { color: #cbd5e1; }
+.dark .text-slate-700 { color: #94a3b8; }
+.dark .text-slate-600 { color: #64748b; }
+.dark .text-slate-500 { color: #64748b; }
+.dark .text-slate-400 { color: #94a3b8; }
+.dark .text-slate-300 { color: #cbd5e1; }
+.dark .text-slate-200 { color: #e2e8f0; }
+.dark .text-slate-100 { color: #f1f5f9; }
+
+/* Dark mode for zinc colors */
+.dark .text-zinc-900 { color: #e4e4e7; }
+.dark .text-zinc-800 { color: #d4d4d8; }
+.dark .text-zinc-700 { color: #a1a1aa; }
+.dark .text-zinc-600 { color: #71717a; }
+.dark .text-zinc-500 { color: #71717a; }
+.dark .text-zinc-400 { color: #a1a1aa; }
+.dark .text-zinc-300 { color: #d4d4d8; }
+.dark .text-zinc-200 { color: #e4e4e7; }
+.dark .text-zinc-100 { color: #f4f4f5; }
+
+/* Dark mode for neutral colors */
+.dark .text-neutral-900 { color: #e5e5e5; }
+.dark .text-neutral-800 { color: #d4d4d4; }
+.dark .text-neutral-700 { color: #a3a3a3; }
+.dark .text-neutral-600 { color: #737373; }
+.dark .text-neutral-500 { color: #737373; }
+.dark .text-neutral-400 { color: #a3a3a3; }
+.dark .text-neutral-300 { color: #d4d4d4; }
+.dark .text-neutral-200 { color: #e5e5e5; }
+.dark .text-neutral-100 { color: #f5f5f5; }
+
+/* Dark mode for stone colors */
+.dark .text-stone-900 { color: #e7e5e4; }
+.dark .text-stone-800 { color: #d6d3d1; }
+.dark .text-stone-700 { color: #a8a29e; }
+.dark .text-stone-600 { color: #78716c; }
+.dark .text-stone-500 { color: #78716c; }
+.dark .text-stone-400 { color: #a8a29e; }
+.dark .text-stone-300 { color: #d6d3d1; }
+.dark .text-stone-200 { color: #e7e5e4; }
+.dark .text-stone-100 { color: #f5f5f4; }
+
+/* Ensure all text elements are visible in dark mode */
+.dark {
+  color: #f3f4f6;
+}
+
+/* Dark mode for specific text elements */
+.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+  color: #ffffff;
+}
+
+.dark p, .dark span, .dark div {
+  color: #f3f4f6;
+}
+
+.dark label {
+  color: #e5e7eb;
+}
+
+.dark input, .dark textarea, .dark select {
+  color: #ffffff;
+  background-color: #374151;
+}
+
+.dark input::placeholder, .dark textarea::placeholder {
+  color: #9ca3af;
+}
